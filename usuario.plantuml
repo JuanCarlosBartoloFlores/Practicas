@@ -1,0 +1,56 @@
+@startuml
+
+
+interface UsuarioDAO {
+  + crearUsuario(usuario: Usuario): void
+  + obtenerUsuarioPorId(id: int): Usuario
+  + obtenerTodosLosUsuarios(): List<Usuario>
+  + actualizarUsuario(usuario: Usuario): void
+  + eliminarUsuario(id: int): void
+}
+
+class UsuarioDAOArchivo {
+  + crearUsuario(usuario: Usuario): void
+  + obtenerUsuarioPorId(id: int): Usuario
+  + obtenerTodosLosUsuarios(): List<Usuario>
+  + actualizarUsuario(usuario: Usuario): void
+  + eliminarUsuario(id: int): void
+}
+class Main {
+  + main(args: String[]): void
+}
+
+class UsuarioDAOMySQL {
+  + crearUsuario(usuario: Usuario): void
+  + obtenerUsuarioPorId(id: int): Usuario
+  + obtenerTodosLosUsuarios(): List<Usuario>
+  + actualizarUsuario(usuario: Usuario): void
+  + eliminarUsuario(id: int): void
+}
+
+
+
+UsuarioDAO <|.. UsuarioDAOArchivo
+UsuarioDAO <|.. UsuarioDAOMySQL
+Main --> UsuarioDAO
+
+class Usuario {
+  - id: int
+  - nombre: String
+  - apellido: String
+  - correoElectronico: String
+  - contrasena: String
+
+  + Usuario(id: int, nombre: String, apellido: String, correoElectronico: String, contrasena: String)
+  + getId(): int
+  + setId(id: int): void
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getApellido(): String
+  + setApellido(apellido: String): void
+  + getCorreoElectronico(): String
+  + setCorreoElectronico(correoElectronico: String): void
+  + getContrasena(): String
+  + setContrasena(contrasena: String): void
+}
+@enduml
